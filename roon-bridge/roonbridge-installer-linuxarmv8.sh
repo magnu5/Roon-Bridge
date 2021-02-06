@@ -54,15 +54,6 @@ function install {
     echo "   http://kb.roonlabs.com/LinuxInstall"
     echo ""
 
-# Check for ffmpeg/avconv
-
-    if [ x$OK != x1 ]; then
-        echo ""
-        echo -e "Error: This package is intended for $ARCH platforms. It is not compatible with your machine. Exiting."
-        echo ""
-        exit 3
-    fi
-
     echo "Downloading $PACKAGE_FILE to $TMPDIR/$PACKAGE_FILE"
     echo ""
     curl -# -o "$TMPDIR/$PACKAGE_FILE" "$PACKAGE_URL"
