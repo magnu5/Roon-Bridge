@@ -1,14 +1,5 @@
 version: '2'
 services:
-  fleet-supervisor:
-    build: ./fleet-supervisor
-    restart: on-failure
-    network_mode: host
-    privileged: true
-    ports:
-      - 3000:3000
-    labels:
-      io.balena.features.supervisor-api: 1
   roon-bridge:
     build: ./roon-bridge
     restart: on-failure
