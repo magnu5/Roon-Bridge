@@ -78,6 +78,7 @@ function install {
 
     echo ""
     echo -n "Copying Files..."
+    rm -rf /opt/$PACKAGE_NAME
     mv "$TMPDIR/$PACKAGE_NAME" /opt
     echo "Done"
 
