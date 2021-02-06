@@ -16,28 +16,13 @@ OK=0
 
 CLEAN_EXIT=0
 
-# for colorization
-ESC_SEQ="\033["
-COL_RESET=$ESC_SEQ"39;49;00m"
-COL_RED=$ESC_SEQ"31;01m"
-COL_GREEN=$ESC_SEQ"32;01m"
-COL_YELLOW=$ESC_SEQ"33;01m"
-COL_BLUE=$ESC_SEQ"34;01m"
-COL_MAGENTA=$ESC_SEQ"35;01m"
-COL_CYAN=$ESC_SEQ"36;01m"
-COL_BOLD=$ESC_SEQ"1m"
-
-function hr {
-    echo -e "${COL_BOLD}--------------------------------------------------------------------------------------${COL_RESET}"
-}
-
 function clean_up { 
     rm -Rf $TMPDIR
     if [ x$CLEAN_EXIT != x1 ]; then
         echo ""
         hr
         echo ""
-        echo -e "${COL_BOLD}${COL_RED}The $PACKAGE_NAME installer did not complete successfully.${COL_RESET}"
+        echo -e "The $PACKAGE_NAME installer did not complete successfully."
         echo ""
         echo "If you are not sure how to proceed, please check out:"
         echo ""
@@ -57,7 +42,7 @@ function install {
     echo ""
     hr
     echo ""
-    echo -e "${COL_BOLD}Welcome to the $PACKAGE_NAME installer${COL_RESET}"
+    echo -e "Welcome to the $PACKAGE_NAME installer"
     echo ""
     echo "This installer sets up $PACKAGE_NAME to run on linux with the following settings:" 
     echo ""
@@ -76,54 +61,11 @@ function install {
     hr
     echo ""
 
-
-    #
-    # Check for linux (in case someone runs on OS X, Cygwin, BSD, etc)
-    #
-    case `uname -s` in 
-        Linux)
-            ;;
-        *)
-            echo -e "${COL_RED}${COL_BLOLD}Error:${COL_RESET} This package is intended for Linux platforms. It is not compatible with your machine. Exiting."
-            ;;
-    esac
-
-    #
-    # Check for proper architecture
-    #
-    case "$MACHINE_ARCH" in
-        armv7*)
-            if [ x$ARCH = xarmv7hf ]; then OK=1; fi
-            ;;
-        aarch64*)
-            if [ x$ARCH = xarmv8 ]; then OK=1; fi
-            if [ x$ARCH = xarmv7hf ]; then OK=1; fi
-            ;;
-        x86_64*)
-            if [ x$ARCH = xx64 ]; then OK=1; fi 
-            ;;
-        i686*)
-            if [ x$ARCH = xx86 ]; then OK=1; fi 
-            ;;
-    esac
-
-    #
-    # Check for root privileges
-    #
-    if [ x$UID != x0 ]; then
-        echo ""
-        echo -e "${COL_RED}${COL_BLOLD}Error:${COL_RESET} This installer must be run with root privileges. Exiting."
-        echo ""
-        exit 2
-    fi
-
-    #
-    # Check for ffmpeg/avconv
-    #
+# Check for ffmpeg/avconv
 
     if [ x$OK != x1 ]; then
         echo ""
-        echo -e "${COL_RED}${COL_BLOLD}Error:${COL_RESET} This package is intended for $ARCH platforms. It is not compatible with your machine. Exiting."
+        echo -e "Error: This package is intended for $ARCH platforms. It is not compatible with your machine. Exiting."
         echo ""
         exit 3
     fi
@@ -149,18 +91,6 @@ function install {
     fi
 
     $TMPDIR/$PACKAGE_NAME/check.sh
-
-    if [ -e /opt/$PACKAGE_NAME ]; then
-        hr
-        echo ""
-        echo -e "${COL_RED}${COL_BOLD}Warning:${COL_RESET} The /opt/$PACKAGE_NAME directory already exists."
-        echo ""
-        echo "This usually indicates that $PACKAGE_NAME was installed previously on this machine. The previous"
-        echo "installation must be deleted before the installation can proceed."
-        echo ""
-        echo "Under normal circumstances, this directory does not contain any user data, so it should be safe to delete it."
-        rm -Rf /opt/$PACKAGE_NAME
-    fi
 
     echo ""
     echo -n "Copying Files..."
@@ -385,7 +315,7 @@ function uninstall {
     echo ""
     hr
     echo ""
-    echo -e "${COL_BOLD}Welcome to the $PACKAGE_NAME uninstaller${COL_RESET}"
+    echo -e "Welcome to the $PACKAGE_NAME uninstaller"
     echo ""
     echo "This removes $PACKAGE_NAME from your machine by doing the following:"
     echo ""
@@ -399,7 +329,6 @@ function uninstall {
     echo ""
     hr
     echo ""
-
 
     #
     # Check for linux (in case someone runs on OS X, Cygwin, BSD, etc)
@@ -430,23 +359,6 @@ function uninstall {
             if [ x$ARCH = xx86 ]; then OK=1; fi 
             ;;
     esac
-
-    #
-    # Check for root privileges
-    #
-    if [ x$UID != x0 ]; then
-        echo ""
-        echo -e "${COL_RED}${COL_BLOLD}Error:${COL_RESET} This installer must be run with root privileges. Exiting."
-        echo ""
-        exit 2
-    fi
-
-    if [ x$OK != x1 ]; then
-        echo ""
-        echo -e "${COL_RED}${COL_BLOLD}Error:${COL_RESET} This package is intended for $ARCH platforms. It is not compatible with your machine. Exiting."
-        echo ""
-        exit 3
-    fi
 
     # set up systemd 
     HAS_SYSTEMCTL=1; which systemctl >/dev/null || HAS_SYSTEMCTL=0
