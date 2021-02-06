@@ -314,7 +314,7 @@ function uninstall {
         Linux)
             ;;
         *)
-            echo -e "${COL_RED}${COL_BLOLD}Error:${COL_RESET} This package is intended for Linux platforms. It is not compatible with your machine. Exiting."
+            echo -e "Error: This package is intended for Linux platforms. It is not compatible with your machine. Exiting."
             ;;
     esac
 
