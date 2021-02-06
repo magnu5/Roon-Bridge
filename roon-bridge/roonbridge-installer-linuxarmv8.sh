@@ -20,16 +20,12 @@ function clean_up {
     rm -Rf $TMPDIR
     if [ x$CLEAN_EXIT != x1 ]; then
         echo ""
-        hr
-        echo ""
         echo -e "The $PACKAGE_NAME installer did not complete successfully."
         echo ""
         echo "If you are not sure how to proceed, please check out:"
         echo ""
         echo " - Roon Labs Community            https://community.roonlabs.com/c/support"
         echo " - Roon Labs Knowledge Base       https://kb.roonlabs.com/LinuxInstall"
-        echo ""
-        hr
         echo ""
     fi
 }
@@ -40,7 +36,6 @@ function install {
     # Print banner/message
     #
     echo ""
-    hr
     echo ""
     echo -e "Welcome to the $PACKAGE_NAME installer"
     echo ""
@@ -57,8 +52,6 @@ function install {
     echo "If you want customize how $PACKAGE_NAME is installed, see:"
     echo ""
     echo "   http://kb.roonlabs.com/LinuxInstall"
-    echo ""
-    hr
     echo ""
 
 # Check for ffmpeg/avconv
@@ -300,11 +293,7 @@ END_LSB_INIT
     CLEAN_EXIT=1
 
     echo ""
-    hr
-    echo ""
     echo "All Done! $PACKAGE_NAME should be running on your machine now".
-    echo ""
-    hr
     echo ""
 }
 
@@ -312,8 +301,6 @@ function uninstall {
     #
     # Print banner/message
     #
-    echo ""
-    hr
     echo ""
     echo -e "Welcome to the $PACKAGE_NAME uninstaller"
     echo ""
@@ -326,8 +313,6 @@ function uninstall {
     echo "If you performed a custom install by hand, this is not for you."
     echo ""
     echo "   http://kb.roonlabs.com/LinuxInstall"
-    echo ""
-    hr
     echo ""
 
     #
@@ -418,11 +403,7 @@ function uninstall {
     CLEAN_EXIT=1
 
     echo ""
-    hr
-    echo ""
     echo "All Done! $PACKAGE_NAME should be uninstalled."
-    echo ""
-    hr
     echo ""
 }
 
