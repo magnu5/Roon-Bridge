@@ -1,4 +1,4 @@
-FROM balenalib/raspberrypi4-64-alpine:latest
+FROM balenalib/raspberrypi4-64-ubuntu:focal
 ENV ROON_DATAROOT /var/RoonBridge
 ENV ROON_ID_DIR /var/RoonBridge
 RUN install_packages curl ffmpeg alsa-utils alsa-lib alsaconf
