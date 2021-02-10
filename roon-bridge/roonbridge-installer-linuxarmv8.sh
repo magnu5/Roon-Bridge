@@ -5,7 +5,7 @@ set -e
 
 # these are replaced by build.sh
 PACKAGE_NAME=RoonBridge
-ARCH=armv8
+ARCH=aarch64
 PACKAGE_URL=http://download.roonlabs.com/builds/RoonBridge_linuxarmv8.tar.bz2
 PACKAGE_FILE=${PACKAGE_NAME}_linux${ARCH}.tar.bz2
 PACKAGE_NAME_LOWER=`echo "$PACKAGE_NAME" | tr "[A-Z]" "[a-z]"`
