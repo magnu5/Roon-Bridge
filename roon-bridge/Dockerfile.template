@@ -7,5 +7,5 @@ COPY asound.conf /etc/
 WORKDIR /opt/RoonBridge
 ADD roonbridge-installer-linuxarmv8.sh /opt/RoonBridge
 RUN chmod +x roonbridge-installer-linuxarmv8.sh && ./roonbridge-installer-linuxarmv8.sh
-VOLUME [ "/opt/RoonBridge", "/tmp" ]
+VOLUME [ "/opt/RoonBridge", "/tmp", "/var/roon/RoonBridge" ]
 ENTRYPOINT /opt/RoonBridge/start.sh
