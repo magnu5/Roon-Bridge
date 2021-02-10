@@ -1,6 +1,7 @@
 FROM balenalib/raspberrypi4-64-ubuntu:latest
 ENV ROON_DATAROOT /var/RoonBridge
 ENV ROON_ID_DIR /var/RoonBridge
+ENV UDEV=on
 RUN install_packages curl ffmpeg
 COPY asound.conf /etc/
 WORKDIR /opt/RoonBridge
