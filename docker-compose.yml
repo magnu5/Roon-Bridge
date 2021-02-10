@@ -10,6 +10,7 @@ services:
     privileged: true
     volumes:
       - roon-bridge:/opt/RoonBridge
+      - roon-bridge:/tmp
 volumes:
   roon-bridge:
   tmp:
