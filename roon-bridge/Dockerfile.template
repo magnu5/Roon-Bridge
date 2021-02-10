@@ -1,4 +1,4 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu:latest
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine:3.13
 ENV ROON_DATAROOT /var/RoonBridge
 ENV ROON_ID_DIR /var/RoonBridge
 RUN install_packages curl ffmpeg
@@ -6,5 +6,5 @@ COPY asound.conf /etc/
 WORKDIR /opt/RoonBridge
 ADD roonbridge-installer-linuxarmv8.sh /opt/RoonBridge
 RUN chmod +x roonbridge-installer-linuxarmv8.sh && ./roonbridge-installer-linuxarmv8.sh
-VOLUME [ "/opt/RoonBridge" ]
+VOLUME [ "/opt/RoonBridge", "/tmp" ]
 ENTRYPOINT /opt/RoonBridge/start.sh

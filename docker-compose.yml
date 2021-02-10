@@ -12,3 +12,4 @@ services:
       - roon-bridge:/opt/RoonBridge
 volumes:
   roon-bridge:
+  tmp:
