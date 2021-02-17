@@ -10,7 +10,7 @@ ADD roonbridge.service /usr/lib/systemd/system/roonbridge.service
 RUN wget -q --no-check-certificate -O- http://download.roonlabs.com/builds/RoonBridge_linuxarmv8.tar.bz2 \
  	| tar xjf - -C /opt
 
-VOLUME [$ROON_DATAROOT, "/opt/RoonBridge"]
+VOLUME [ $ROON_DATAROOT, "/opt/RoonBridge" ]
 
 RUN /opt/RoonBridge/check.sh
-ENTRYPOINT /opt/RoonBridge/start.sh
+CMD [ "/bin/bash", "/opt/RoonBridge/start.sh" ]
