@@ -9,8 +9,7 @@ services:
       - 9100-9200:9100-9200
     privileged: true
     volumes:
+      - roon-bridge:/var/roon
       - roon-bridge:/opt/RoonBridge
-      - roon-bridge:/var/roon/RoonBridge
-      - roon-bridge:/tmp
 volumes:
   roon-bridge:
